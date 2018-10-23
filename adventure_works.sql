@@ -93,7 +93,7 @@ CREATE PROC dbo.uspPersonalInformation @City nvarchar(30), @Rate int
 AS
 SELECT a1.City, a1.AddressLine1, a2.Rate, a3.HireDate, a4.PhoneNumber
 FROM Person.Address a1
-INNER JOIN HumanResources.Employee a3 ON a3.BusinessEntityID = a1.AddressID
+INNER JOIN HumanResources.Employee a3 ON a3.BusinessEntityID = a1.AddressID --This line isn't doing anything is it?
 INNER JOIN HumanResources.EmployeePayHistory a2 ON a2.BusinessEntityID = a3.BusinessEntityID
 INNER JOIN Person.PersonPhone a4 ON a4.BusinessEntityID = a3.BusinessEntityID
 WHERE a1.City = @City AND a2.Rate = @Rate
@@ -111,4 +111,4 @@ GO
 
 dbo.uspPersonalInformation @City = 'Seattle', @Rate = 25 --DEFINITELY NOT FOR NEFARIOUS DEEDS...
 
---Definitely referenced https://www.sqldatadictionary.com/AdventureWorks2014.pdf --
+--Also referenced https://www.sqldatadictionary.com/AdventureWorks2014.pdf
